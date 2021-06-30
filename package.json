@@ -1,0 +1,27 @@
+{
+  "name": "employee-db",
+  "version": "1.0.0",
+  "description": "An app for storing, altering, and calling on employee data using express",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rudie-g/Employee-DB.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rudie-g/Employee-DB/issues"
+  },
+  "homepage": "https://github.com/rudie-g/Employee-DB#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "dotenv": "^10.0.0",
+    "inquirer": "^8.1.1",
+    "mysql2": "^2.2.5"
+  }
+}
