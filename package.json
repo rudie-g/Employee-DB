@@ -1,7 +1,7 @@
 {
   "name": "employee-db",
   "version": "1.0.0",
-  "description": "An app for storing, altering, and calling on employee data using express",
+  "description": "An app for storing, altering, and calling on employee data using express and mysql",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -12,7 +12,7 @@
     "url": "git+https://github.com/rudie-g/Employee-DB.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Rauol Moore",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/rudie-g/Employee-DB/issues"

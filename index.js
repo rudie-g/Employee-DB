@@ -5,7 +5,7 @@ const inquirer = require('inquirer');
 function init() {
     inquirer.prompt({
         type: "list",
-        message: "Thank you for using Employee-DB, what can I do for you today?",
+        message: "Main Menu:",
         choices: [
             "View Departments",
             "View Employees",
@@ -83,7 +83,11 @@ function init() {
 }
 
 
-function addEmployeeInq() {};
+function addEmployeeInq() {
+    inquirer.prompt({
+        
+    })
+};
 
 function addEmployeeRoleInq() {};
 
@@ -97,4 +101,8 @@ function updateEmployeeRoleInq() {};
 
 function updateManagerInq() {};
 
-init();
+connection.connect((err) => {
+    if (err) throw err;
+    console.log("Welcome to Employee-DB!");
+    init();
+})
