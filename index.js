@@ -84,12 +84,62 @@ function init() {
 
 
 function addEmployeeInq() {
-    inquirer.prompt({
-        
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "Enter employee's first name: ",
+            name: "firstName"
+        },
+        {
+            type: "input",
+            message: "Enter employee's last name: ",
+            name: "lastName"
+        },
+        {
+            type: "input",
+            message: "Enter employee's role ID: ",
+            name: "roleId"
+        },
+        {
+            type: "input",
+            message: "Enter employee's manager ID: ",
+            name: "managerId"
+        }
+    ])
+    .then (({firstName, lastName, roleId, managerId}) => {
+        config.addEmployee(firstName, lastName, roleId, managerId)
+        .then(() => {init();});
     })
 };
 
-function addEmployeeRoleInq() {};
+function addEmployeeRoleInq() {
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "Enter the title of the role: ",
+            name: "roleTitle"
+        },
+        {
+            type: "input",
+            message: "Enter the annual salary: ",
+            name: "roleSalary"
+        },
+        {
+            type: "input",
+            message: "Enter the department ID: \n  Accounting = 1 \n Engineering = 2 \n Janitorial = 3 \n HR = 4",
+            name: "roleId"
+        },
+        {
+            type: "input",
+            message: "Enter employee's manager ID: ",
+            name: "managerId"
+        }
+    ])
+    .then (({firstName, lastName, roleId, managerId}) => {
+        config.addEmployee(firstName, lastName, roleId, managerId)
+        .then(() => {init();});
+    })
+};
 
 function addDepartmentInq() {};
 
