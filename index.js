@@ -126,30 +126,157 @@ function addEmployeeRoleInq() {
         },
         {
             type: "input",
-            message: "Enter the department ID: \n  Accounting = 1 \n Engineering = 2 \n Janitorial = 3 \n HR = 4",
+            message: "Enter the department ID: ",
             name: "roleId"
-        },
-        {
-            type: "input",
-            message: "Enter employee's manager ID: ",
-            name: "managerId"
         }
     ])
-    .then (({firstName, lastName, roleId, managerId}) => {
-        config.addEmployee(firstName, lastName, roleId, managerId)
+    .then (({title, salary, department_id}) => {
+        config.addEmployee(title, salary, department_id)
         .then(() => {init();});
     })
 };
 
-function addDepartmentInq() {};
+function addDepartmentInq() {
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "Enter department name: ",
+            name: "departmentName"
+        }
+    ])
+    .then (({departmentName}) => {
+        config.addDepartment(departmentName)
+        .then(() => {init();});
+    })
+};
 
-function addManagerInq() {};
+function addManagerInq() {
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "Enter manager's first name: ",
+            name: "firstName"
+        },
+        {
+            type: "input",
+            message: "Enter manager's last name: ",
+            name: "lastName"
+        },
+        {
+            type: "input",
+            message: "Enter manager's salary: ",
+            name: "managerSalary"
+        },
+        {
+            type: "input",
+            message: "Enter manager's department ID: ",
+            name: "departmentId"
+        }
+    ])
+    .then (({firstName, lastName, managerSalary, departmentId}) => {
+        config.addEmployee(firstName, lastName, managerSalary, departmentId)
+        .then(() => {init();});
+    })
+};
 
-function updateEmployeeInq() {};
+function updateEmployeeInq() {
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "Please enter the first name of the employee you wish to update: ",
+            name: "employeeFirst"
+        },
+        {
+            type: "input",
+            message: "Please enter the last name of the employee you wish to update: ",
+            name: "employeeLast"
+        },
+        {
+            type: "list",
+            message: "What would you like to change?",
+            choices: [
+                "first_name",
+                "last_name",
+                "role_id",
+                "manager_id"
+            ],
+            name: "changeKey"
+        },
+        {
+            type: "input",
+            message: "What would you like to change it to? ",
+            name:"changeVal"
+        }
+    ])
+    .then(({changeKey, changeVal, employeeFirst, employeeLast}) => {
+        config.updateEmployee(changeKey, changeVal, employeeFirst, employeeLast)
+        .then(() => {init();})
+    })
+};
 
-function updateEmployeeRoleInq() {};
+function updateEmployeeRoleInq() {
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "Please enter the first name of the employee you wish to update: ",
+            name: "employeeFirst"
+        },
+        {
+            type: "list",
+            message: "What would you like to change?",
+            choices: [
+                "title",
+                "salary",
+                "department_id"
+            ],
+            name: "changeKey"
+        },
+        {
+            type: "input",
+            message: "What would you like to change it to? ",
+            name:"changeVal"
+        }
+    ])
+    .then(({changeKey, changeVal, roleTitle}) => {
+        config.updateEmployeeRole(changeKey, changeVal, roleTitle)
+        .then(() => {init();})
+    })
+};
 
-function updateManagerInq() {};
+function updateManagerInq() {
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "Please enter the first name of the manager you wish to update: ",
+            name: "managerFirst"
+        },
+        {
+            type: "input",
+            message: "Please enter the last name of the manager you wish to update: ",
+            name: "managerLast"
+        },
+        {
+            type: "list",
+            message: "What would you like to change?",
+            choices: [
+                "first_name",
+                "last_name",
+                "salary",
+                "department_id"
+            ],
+            name: "changeKey"
+        },
+        {
+            type: "input",
+            message: "What would you like to change it to? ",
+            name:"changeVal"
+        }
+    ])
+    .then(({changeKey, changeVal, managerFirst, managerLast}) => {
+        config.updateManager(changeKey, changeVal, managerFirst, managerLast)
+        .then(() => {init();})
+    })
+};
 
 connection.connect((err) => {
     if (err) throw err;
