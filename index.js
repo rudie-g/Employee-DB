@@ -18,7 +18,6 @@ function init() {
             "Update Employee",
             "Update Manager",
             "Update Employee Role",
-            "View Employees By Manager",
             "Disconnect"
         ],
         name: "cont"
