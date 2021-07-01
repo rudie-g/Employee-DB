@@ -97,11 +97,29 @@ const config = {
         })
     },
 
-    updateEmployee: () => {},
+    updateEmployee: (changeKey, changeVal, employeeFirst, employeeLast) => {
+        connection.query("UPDATE employees SET (?) = (?) WHERE first_name = (?) AND last_name = (?)", changeKey, changeVal, employeeFirst, employeeLast, (err, res) => {
+            if (err) {return reject(err);}
+            console.log("Success!");
+            return resolve();
+        })
+    },
 
-    updateEmployeeRole: () => {},
+    updateEmployeeRole: (changeKey, changeVal, roleTitle) => {
+        connection.query("UPDATE roles SET (?) = (?) WHERE title = (?)", changeKey, changeVal, roleTitle, (err, res) => {
+            if (err) {return reject(err);}
+            console.log("Success!");
+            return resolve();
+        })
+    },
 
-    updateManager: () => {},
+    updateManager: (changeKey, changeVal, managerFirst, managerLast) => {
+        connection.query("UPDATE managers SET (?) = (?) WHERE first_name = (?) AND last_name = (?)", changeKey, changeVal, managerFirst, managerLast, (err, res) => {
+            if (err) {return resolve();}
+            console.log("Success!");
+            return resolve();
+        })
+    },
 
     allEmployeeRoles: () => {
         return new Promise((resolve, reject) => {
@@ -133,24 +151,43 @@ const config = {
         return new Promise((resolve, reject) => {
             connection.query("SELECT * FROM employees", (err, res) => {
                 if (err) {return reject(err);}
-                let employeesNameArr = [];
+                let employeesObjArr = [];
                 for (let i = 0; i < res.length; i++) {
-                    const employeesObjArr = {
-                        firstName: res[i].first_name,
-                        lastName: res[i].last_name,
-                        salary: res[i].salary,
-                        departmentId: res[i].department_id,
-                        managerId: res[i].manager_id,
-                        id: res[i].id
+                    const employeesObj = {
+                        "First Name": res[i].first_name,
+                        "Last Name": res[i].last_name,
+                        "Department ID": res[i].department_id,
+                        "Manager ID": res[i].manager_id,
+                        "Employee ID": res[i].id
                     };
-                    employeesNameArr.push(employeesObjArr);
+                    employeesObjArr.push(employeesObj);
                 }
-                return resolve(employeesNameArr);
+                return resolve(employeesObjArr);
             })
        })
     },
 
-    allManagers: () => {}
+    allManagers: () => {
+        connection.query("SELECT * FROM managers", (err, res) => {
+            return new Promise((resolve, reject) => {
+                connection.query("SELECT * FROM employees", (err, res) => {
+                    if (err) {return reject(err);}
+                    let managersObjArr = [];
+                    for (let i = 0; i < res.length; i++) {
+                        const managersObj = {
+                            "First Name": res[i].first_name,
+                            "Last Name": res[i].last_name,
+                            "Salary": res[i].salary,
+                            "Department ID": res[i].department_id,
+                            "Manager's ID": res[i].manager_id
+                        };
+                        managersObjArr.push(managersObj);
+                    }
+                    return resolve(managersObjArr);
+                })
+           })
+        })
+    }
 }
 
 module.exports = config;
