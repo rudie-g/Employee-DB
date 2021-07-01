@@ -44,19 +44,15 @@ function init() {
                 break;
                 case "Add Employee":
                     addEmployeeInq()
-                    .then(() => init())
                 break;
                 case "Add Manager":
                     addManagerInq()
-                    .then(() => init())
                 break;
                 case "Add Employee Role":
                     addEmployeeRoleInq()
-                    .then(() => init())
                 break;
                 case "Add Department":
                     addDepartmentInq()
-                    .then(() => init())
                 break;
                 case "Update Employee":
                     updateEmployeeInq()
@@ -68,10 +64,6 @@ function init() {
                 break;
                 case "Update Manager":
                     updateManagerInq()
-                    .then(() => init())
-                break;
-                case "View Employees By Manager":
-                    viewByManagerInq()
                     .then(() => init())
                 break;
             }
@@ -108,7 +100,10 @@ function addEmployeeInq() {
     ])
     .then (({firstName, lastName, roleId, managerId}) => {
         config.addEmployee(firstName, lastName, roleId, managerId)
-        .then(() => {init();});
+        .then(() => {
+            console.log("\n");
+            init();
+        })
     })
 };
 
@@ -132,7 +127,10 @@ function addEmployeeRoleInq() {
     ])
     .then (({title, salary, department_id}) => {
         config.addEmployee(title, salary, department_id)
-        .then(() => {init();});
+        .then(() => {
+            console.log("\n");
+            init();
+        })
     })
 };
 
@@ -146,7 +144,10 @@ function addDepartmentInq() {
     ])
     .then (({departmentName}) => {
         config.addDepartment(departmentName)
-        .then(() => {init();});
+        .then(() => {
+            console.log("\n");
+            init();
+        })
     })
 };
 
@@ -175,7 +176,10 @@ function addManagerInq() {
     ])
     .then (({firstName, lastName, managerSalary, departmentId}) => {
         config.addEmployee(firstName, lastName, managerSalary, departmentId)
-        .then(() => {init();});
+        .then(() => {
+            console.log("\n");
+            init();
+        })
     })
 };
 
@@ -210,7 +214,10 @@ function updateEmployeeInq() {
     ])
     .then(({changeKey, changeVal, employeeFirst, employeeLast}) => {
         config.updateEmployee(changeKey, changeVal, employeeFirst, employeeLast)
-        .then(() => {init();})
+        .then(() => {
+            console.log("\n");
+            init();
+        })
     })
 };
 
@@ -239,7 +246,10 @@ function updateEmployeeRoleInq() {
     ])
     .then(({changeKey, changeVal, roleTitle}) => {
         config.updateEmployeeRole(changeKey, changeVal, roleTitle)
-        .then(() => {init();})
+        .then(() => {
+            console.log("\n");
+            init();
+        })
     })
 };
 
@@ -274,7 +284,10 @@ function updateManagerInq() {
     ])
     .then(({changeKey, changeVal, managerFirst, managerLast}) => {
         config.updateManager(changeKey, changeVal, managerFirst, managerLast)
-        .then(() => {init();})
+        .then(() => {
+            console.log("\n");
+            init();
+        })
     })
 };
 
