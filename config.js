@@ -67,7 +67,7 @@ const config = {
 
     addEmployee: (firstName, lastName, roleId, managerId) => {
         return new Promise((resolve, reject) => {
-            connection.query("INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [firstName, lastName, roleId, managerId], (err, res) => {
+            connection.query(`INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES ("${firstName}", "${lastName}", ${roleId}, ${managerId})`, (err, res) => {
                 if (err) {return reject(err);}
                 console.log("Success!");
                 return resolve();
@@ -77,7 +77,7 @@ const config = {
 
     addEmployeeRole: (roleTitle, roleSalary, departmentId) => {
         return new Promise((resolve, reject) => {
-            connection.query("INSERT INTO roles (title, salary, department_id) VALUES (?, ?, ?)", [roleTitle, roleSalary, departmentId], (err, res) => {
+            connection.query(`INSERT INTO roles (title, salary, department_id) VALUES ("${roleTitle}", ${roleSalary}, ${departmentId})`, (err, res) => {
                 if (err) {return reject(err);}
                 console.log("Success!");
                 return resolve();
@@ -87,7 +87,7 @@ const config = {
 
     addDepartment: (departmentName) => {
         return new Promise((resolve, reject) => {
-            connection.query("INSERT INTO departments (name) VALUES (?)", departmentName, (err, res) => {
+            connection.query(`INSERT INTO departments (name) VALUES ("${departmentName}")`, (err, res) => {
                 if (err) {return reject(err);}
                 console.log("Success!");
                 return resolve();     
@@ -97,7 +97,7 @@ const config = {
 
     addManager: (firstName, lastName, managerSalary, departmentId) => {
         return new Promise((resolve, reject) => {
-            connection.query("INSERT INTO managers (first_name, last_name, salary, department_id) VALUES (?, ?, ?, ?)", [firstName, lastName, managerSalary, departmentId], (err, res) => {
+            connection.query(`INSERT INTO managers (first_name, last_name, salary, department_id) VALUES ("${firstName}", "${lastName}", ${managerSalary}, ${departmentId})`, (err, res) => {
                 if (err) {return reject(err);}
                 console.log("Success!");
                 return resolve();
@@ -127,7 +127,7 @@ const config = {
 
     updateManager: (changeKey, changeVal, managerFirst, managerLast) => {
         return new Promise((resolve, reject) => {
-            connection.query("UPDATE managers SET (?) = (?) WHERE first_name = (?) AND last_name = (?)", changeKey, changeVal, managerFirst, managerLast, (err, res) => {
+            connection.query(`UPDATE managers SET ${changeKey} = ${changeVal} WHERE first_name = "${managerFirst}" AND last_name = "${managerLast}"`, (err, res) => {
                 if (err) {return reject();}
                 console.log("Success!");
                 return resolve();
