@@ -107,7 +107,7 @@ const config = {
 
     updateEmployee: (changeKey, changeVal, employeeFirst, employeeLast) => {
         return new Promise((resolve, reject) => {
-            connection.query("UPDATE employees SET (?) = (?) WHERE first_name = (?) AND last_name = (?)", changeKey, changeVal, employeeFirst, employeeLast, (err, res) => {
+            connection.query(`UPDATE employees SET ${changeKey} = ${changeVal} WHERE first_name = "${employeeFirst}" AND last_name = "${employeeLast}"`, (err, res) => {
                 if (err) {return reject(err);}
                 console.log("Success!");
                 return resolve();
@@ -117,7 +117,7 @@ const config = {
 
     updateEmployeeRole: (changeKey, changeVal, roleTitle) => {
         return new Promise((resolve, reject) => {
-            connection.query("UPDATE roles SET (?) = (?) WHERE title = (?)", changeKey, changeVal, roleTitle, (err, res) => {
+            connection.query(`UPDATE roles SET ${changeKey} = ${changeVal} WHERE title = "${roleTitle}"`, (err, res) => {
                 if (err) {return reject(err);}
                 console.log("Success!");
                 return resolve();
@@ -128,7 +128,7 @@ const config = {
     updateManager: (changeKey, changeVal, managerFirst, managerLast) => {
         return new Promise((resolve, reject) => {
             connection.query("UPDATE managers SET (?) = (?) WHERE first_name = (?) AND last_name = (?)", changeKey, changeVal, managerFirst, managerLast, (err, res) => {
-                if (err) {return resolve();}
+                if (err) {return reject();}
                 console.log("Success!");
                 return resolve();
             })

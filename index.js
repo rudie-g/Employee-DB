@@ -1,6 +1,7 @@
 const config = require("./config.js");
 const connection = require("./connection.js");
 const inquirer = require('inquirer');
+const { allEmployees } = require("./config.js");
 
 function init() {
     inquirer.prompt({
@@ -18,7 +19,6 @@ function init() {
             "Update Employee",
             "Update Manager",
             "Update Employee Role",
-            "View Employees By Manager",
             "Disconnect"
         ],
         name: "cont"
@@ -56,15 +56,12 @@ function init() {
                 break;
                 case "Update Employee":
                     updateEmployeeInq()
-                    .then(() => init())
                 break;
                 case "Update Employee Role":
                     updateEmployeeRoleInq()
-                    .then(() => init())
                 break;
                 case "Update Manager":
                     updateManagerInq()
-                    .then(() => init())
                 break;
             }
         } else {
@@ -122,11 +119,11 @@ function addEmployeeRoleInq() {
         {
             type: "input",
             message: "Enter the department ID: ",
-            name: "roleId"
+            name: "departmentId"
         }
     ])
-    .then (({title, salary, department_id}) => {
-        config.addEmployee(title, salary, department_id)
+    .then (({title, salary, departmentId}) => {
+        config.addEmployee(title, salary, departmentId)
         .then(() => {
             console.log("\n");
             init();
@@ -213,6 +210,7 @@ function updateEmployeeInq() {
         }
     ])
     .then(({changeKey, changeVal, employeeFirst, employeeLast}) => {
+        allEmployees()
         config.updateEmployee(changeKey, changeVal, employeeFirst, employeeLast)
         .then(() => {
             console.log("\n");
@@ -225,8 +223,8 @@ function updateEmployeeRoleInq() {
     inquirer.prompt([
         {
             type: "input",
-            message: "Please enter the first name of the employee you wish to update: ",
-            name: "employeeFirst"
+            message: "title of the role you would like to update: ",
+            name: "roleTitle"
         },
         {
             type: "list",
