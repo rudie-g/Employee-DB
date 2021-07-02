@@ -12,6 +12,7 @@ A simple application for tracking and managing employee information using MySQL 
 - [Installation Instructions ⌨️](#installation-⌨️)
 - [Usage 🖥️](#usage-🖥️)
 - [Contributors 📜](#contributors-📜)
+- [Screenshot & Video 📸](#screenshot--video-📸-click-on-screenshot-to-see-video)
 - [Contact 📠](#contact-📠)
 - [License 📋](#license-📋)
 
