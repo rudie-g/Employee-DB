@@ -69,7 +69,7 @@ const config = {
         return new Promise((resolve, reject) => {
             connection.query(`INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES ("${firstName}", "${lastName}", ${roleId}, ${managerId})`, (err, res) => {
                 if (err) {return reject(err);}
-                console.log("Success!");
+                console.log("\n Success!");
                 return resolve();
             })
         })
@@ -79,7 +79,7 @@ const config = {
         return new Promise((resolve, reject) => {
             connection.query(`INSERT INTO roles (title, salary, department_id) VALUES ("${roleTitle}", ${roleSalary}, ${departmentId})`, (err, res) => {
                 if (err) {return reject(err);}
-                console.log("Success!");
+                console.log("\n Success!");
                 return resolve();
             })
         })
@@ -89,7 +89,7 @@ const config = {
         return new Promise((resolve, reject) => {
             connection.query(`INSERT INTO departments (name) VALUES ("${departmentName}")`, (err, res) => {
                 if (err) {return reject(err);}
-                console.log("Success!");
+                console.log("\n Success!");
                 return resolve();     
             })
         })
@@ -99,7 +99,7 @@ const config = {
         return new Promise((resolve, reject) => {
             connection.query(`INSERT INTO managers (first_name, last_name, salary, department_id) VALUES ("${firstName}", "${lastName}", ${managerSalary}, ${departmentId})`, (err, res) => {
                 if (err) {return reject(err);}
-                console.log("Success!");
+                console.log("\n Success!");
                 return resolve();
             })
         })
@@ -109,7 +109,7 @@ const config = {
         return new Promise((resolve, reject) => {
             connection.query(`UPDATE employees SET ${changeKey} = ${changeVal} WHERE first_name = "${employeeFirst}" AND last_name = "${employeeLast}"`, (err, res) => {
                 if (err) {return reject(err);}
-                console.log("Success!");
+                console.log("\n Success!");
                 return resolve();
             })
         })
@@ -119,7 +119,7 @@ const config = {
         return new Promise((resolve, reject) => {
             connection.query(`UPDATE roles SET ${changeKey} = ${changeVal} WHERE title = "${roleTitle}"`, (err, res) => {
                 if (err) {return reject(err);}
-                console.log("Success!");
+                console.log("\n Success!");
                 return resolve();
             })
         })
@@ -129,7 +129,7 @@ const config = {
         return new Promise((resolve, reject) => {
             connection.query(`UPDATE managers SET ${changeKey} = ${changeVal} WHERE first_name = "${managerFirst}" AND last_name = "${managerLast}"`, (err, res) => {
                 if (err) {return reject();}
-                console.log("Success!");
+                console.log("\n Success!");
                 return resolve();
             })
         })
